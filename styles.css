@@ -1,0 +1,220 @@
+@font-face {
+  font-family: 'Lato';
+  src: url(../fonts/Lato-Regular.ttf) format('truetype');
+  font-weight: 100 900;
+}
+body {
+  padding:20px;
+  font:14px/1.5 Lato, Helvetica, Arial, sans-serif;
+  color:#444;
+  font-weight:300;
+  background-color:#f2f2f2;
+  min-width: 280px;
+}
+
+h1, h2, h3 {
+  color:#222;
+  margin:0 0 20px;
+}
+
+h4 {
+  margin:0;
+}
+
+ul {
+  margin:0 0 20px;
+}
+
+h1, h2, h3 {
+  line-height:1.1;
+}
+
+h1 {
+/*  color: #356333;*/
+  font-size:38px;
+}
+
+h2 {
+  color:#393939;
+}
+
+h3, h4 {
+  color:#494949;
+}
+
+a {
+  color:#39c;
+  font-weight:400;
+  text-decoration:none;
+}
+
+.wrapper {
+  border: 1px solid #DDDDDD;
+  border-radius: 10px 10px 10px 10px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.03);
+  margin: 0 auto;
+  padding: 30px;
+  width: 600px;
+  background-color:white;
+}
+
+img {
+  max-width:100%;
+}
+
+header h1 {
+  font-weight:400;
+  float:left;
+}
+
+header .contact {
+  float:right;
+}
+
+header ul {
+  list-style:none;
+  padding:0;
+}
+
+header li {
+  height:40px;
+  margin: 0 5px;
+  float:left;
+}
+
+header ul a {
+  line-height:1;
+  font-size:16px;
+  color:#999;
+  text-align:center;
+  padding-top:6px;
+  height:40px;
+}
+
+.fade:hover, .fade h2:hover, .fade li:hover {
+  color:black !important;
+}
+
+strong {
+  color:#222;
+  font-weight:700;
+}
+
+header ul a strong {
+  font-size:14px;
+  display:block;
+  color:#222;
+}
+
+section {
+  width:600px;
+  padding: 80px 0 3px;
+}
+
+.date {
+  color:#222;
+  margin:1px;
+}
+
+.description {
+  font-style:italic;
+}
+
+#description {
+  padding: 90px 0 3px;
+}
+
+#description p {
+  font-weight:700;
+}
+
+#buzzwords, #buzzwords h2 {
+  color:#aaa;
+}
+
+small {
+  font-size:11px;
+}
+
+hr {
+  border:0;
+  background:#e5e5e5;
+  height:1px;
+  margin:0 0 20px;
+}
+
+footer {
+  width:270px;
+  float:left;
+  position:fixed;
+  bottom:50px;
+}
+
+@media print, screen and (max-width: 720px) {
+  body {
+    word-wrap:break-word;
+  }
+
+  header {
+    padding:0;
+  }
+
+  header .contact {
+    position:static;
+  }
+
+  pre, code {
+    word-wrap:normal;
+  }
+}
+@media print, screen and (max-width: 600px) {
+  body {
+    background-color:white;
+  }
+
+  header h1 {
+    display:block;
+    text-align:left;
+    width:100%;
+  }
+
+  header .contact {
+    display:block;
+    width:100%;
+    float:none;
+  }
+
+  .wrapper {
+    width:auto;
+    border:none;
+    margin:0;
+    padding:0;
+    box-shadow:none;
+  }
+
+  .about-info {
+    margin-top: 30px;
+  }
+
+  section {
+    width:auto;
+  }
+
+  section hr {
+    display:none;
+  }
+}
+
+@media print, screen and (max-width: 480px) {
+  body {
+    padding:10px;
+  }
+}
+
+@media print {
+  body {
+    padding:0.4in;
+    font-size:12pt;
+    color:#444;
+  }
+}
