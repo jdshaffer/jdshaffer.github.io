@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solving hand_recognition Module Installation Errors on MacOS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        h2 {
+            color: #666;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        pre {
+            background-color: #eee;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        code {
+            color: #d6336c;
+            font-family: "Courier New", Courier, monospace;
+        }
+        ul {
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Solving hand_recognition Module Installation Errors on MacOS</h1>
+        <h2>Date: 2024-10-22</h2>
+
+        <br>
+        <h2>Problem</h2>
+        <ul>
+            <li>Cannot install the hand_recognition module for Python3 on MacOS</li>
+        </ul>
+
+        <br>        
+        <h2>Details</h2>
+        <ul>
+            <li><code>pip3 install hand_recognition</code> throws various errors, particularly issues with <code>dlib</code>.</li>
+            <li><code>pip3 install dlib</code> also fails with multiple errors (e.g., wheel issues).</li>
+            <li>Online help is limited, mostly focused on Windows users or older Python versions.</li>
+        </ul>
+        
+        <br>
+        <h2>My Solution</h2>
+        <ol>
+            <li>We need to have the XCode Tools installed before doing all this as we will be compiling our own <code>dlib</code>. Note that this might take awhile:
+                <pre><code>xcode-select --install</code></pre>
+            </li>
+            <li>Following some advice I found on YouTube, I downloaded the <code>dlib</code> repository from GitHub:
+                <pre><code>https://github.com/davisking/dlib</code></pre>
+            </li>
+            <li>I then unzipped the downloaded file and made a backup for future use. (You can also just double-click the file in a Finder window. That's what I did.):
+                <pre><code>unzip dlib-master.zip</code></pre>
+            </li>
+            <li> I started up my custom python virtual environment. Perhaps you don't need to, but as I run python3 from a homebrew install (<code>brew install python3</code>) homebrew requires me to use a virtual environment to install modules:
+                <pre><code>source /PATH_TO_MY_ENVIROMENT_FOLDER/bin/activate</code></li>
+            <li>I then uninstalled all versions of <code>cmake</code> on my system. I don't know why I needed to do this, but it was the only way I could get this to work:
+                <pre><code>brew uninstall cmake<br>pip3 uninstall cmake</code></pre>
+            </li>
+            <li>I then installed a small collection of helper tools called <code>setuptools</code>. <i>This seems to be the key to a successful install.</i> This module side-steps a problem introduced in newer versions of python (greater than 3.11) where users are not able to install the necessary module <code>distutils</code> because it is depreciated and no longer available to install! However, this module <b><i>is included</i></b> in the <code>setuptools</code> module! Moment of honesty -- I read about this side-step via an older Japanese post on X (Twitter). It's not my genius at work:
+                <pre><code>pip3 install setuptools</code></pre>
+            </li>
+            <li>After that, I tried compiling the <code>dlib</code> program that I downloaded from GitHub (Step 2 above), but running it at this point causes it to complain about a missing <code>cmake</code>. That's OK, as we purposely deleted <code>cmake</code> above. However, <i>for some odd reason</i> I need to try running the setup program at this point, even before installing <code>cmake</code>. *shrug* Just to be clear, the following command seems necessary, but will fail to install:
+                <pre><code>python3 setup.py install</code></pre>
+            </li>
+            <li>So, now I installed <code>cmake</code> inside my virtual environment:
+                <pre><code>pip3 install cmake</code></pre>
+            </li>
+            <li>Then I ran the <code>setup.py</code> program again to compile <code>dlib</code>, and it works!:
+                <pre><code>python3 setup.py install</code></pre>
+            </li>
+            <li>Finally, I could install the desired <code>face_recognition</code> module for python:
+                <pre><code>pip3 install face_recognition</code></pre>
+            </li>
+        </ol>
+    </div>
+</body>
+</html>
